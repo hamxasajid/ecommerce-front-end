@@ -1,71 +1,150 @@
 import React from "react";
 import "./Nav.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Nav = () => {
+  const [offCanvasOpen, setOffCanvasOpen] = useState(false);
   return (
     <>
-      {/* FOR MOBILE */}
+      {/* MOBILE HEADER */}
       <header className="mobile-header-top">
-        <div className="mobile-header-content">
-          <Link to="/" className="brand-wrap me-2">
+        <div className="mobile-header-content d-flex align-items-center justify-content-between px-3 py-2">
+          {/* LEFT: Hamburger Icon */}
+          <div className="d-flex align-items-center gap-1">
             <button
-              className="btn btn-primary d-flex align-items-center justify-content-center"
-              style={{ width: "40px", height: "40px", borderRadius: "5px" }}
+              className="btn btn-light"
+              onClick={() => setOffCanvasOpen(true)}
             >
-              <i className="fas fa-shopping-bag text-white"></i>
+              <i className="fas fa-bars"></i>
             </button>
-          </Link>
-          {/* brand-wrap end.// */}
-          <div className="flex-grow-1">
-            <form action="#" className="search my-3 my-lg-0 ms-xl-4">
-              <div className="input-group">
-                <input
-                  type="search"
-                  className="form-control"
-                  style={{ width: "55%" }}
-                  placeholder="Search"
-                />
-                <button className="btn btn-light">
-                  <i className="fa fa-search"></i>
-                </button>
-              </div>
-              {/* input-group end.// */}
-            </form>
-            {/* search-wrap end.// */}
+            {/* CENTER: Logo */}
+            <Link
+              to="/"
+              className="brand-wrap me-3 d-flex align-items-center justify-content-center gap-2 fs-3"
+            >
+              <i
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "5px",
+                }}
+                className="fas fa-shopping-bag text-white bg-primary d-flex align-items-center justify-content-center"
+              ></i>
+              eComerce
+              {""}
+            </Link>
+          </div>
+
+          {/* RIGHT: Cart & User Icon */}
+          <div>
+            <Link to="/cart" className="me-3">
+              <i className="fas fa-shopping-cart text-dark"></i>
+            </Link>
+            <Link to="/profile">
+              <i className="fas fa-user text-dark"></i>
+            </Link>
           </div>
         </div>
-        {/* mobile-header-content .// */}
+
+        {/* SECOND ROW: Search Bar */}
+        <div className="px-3 py-2">
+          <form action="#" className="search">
+            <div className="input-group">
+              <input
+                type="search"
+                className="form-control"
+                placeholder="Search"
+              />
+              <button className="btn btn-light">
+                <i className="fa fa-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
       </header>
 
-      <nav className="mobile-nav-bottom">
-        <div className="mobile-nav-content">
-          <a href="#" className="nav-link">
-            <i className="icon fa fa-home"></i>
-            <span className="text">Home</span>
-          </a>
-          <a href="#" className="nav-link">
-            <i className="icon fa fa-box"></i>
-            <span className="text">Category</span>
-          </a>
-          <a href="#" className="nav-link">
-            <i className="icon fa fa-shopping-cart"></i>
-            <span className="text">My cart</span>
-          </a>
-          <a href="#" className="nav-link">
-            <i className="icon fa fa-user"></i>
-            <span className="text">Profile</span>
-          </a>
+      {/* OFF-CANVAS MENU */}
+      <div className={`offcanvas-menu ${offCanvasOpen ? "open" : ""}`}>
+        <div className="offcanvas-content">
+          <button className="close-btn" onClick={() => setOffCanvasOpen(false)}>
+            &times;
+          </button>
+          <ul className="text-dark">
+            {/* Upper Section */}
+            <div className="upper">
+              <Link to="/profile" className="profile-icon me-2">
+                <i className="fa fa-user-circle" aria-hidden="true"></i>
+              </Link>
+              <li>
+                <Link to="/signin">Sign in | Register</Link>
+              </li>
+            </div>
+
+            {/* Middle Section */}
+            <div className="middle">
+              <li>
+                <Link to="/">
+                  <i className="fa fa-home me-2"></i> Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/categories">
+                  <i className="fa fa-th-large me-2"></i> Categories
+                </Link>
+              </li>
+              <li>
+                <Link to="/favorites">
+                  <i className="fa fa-heart me-2"></i> Favorites
+                </Link>
+              </li>
+              <li>
+                <Link to="/orders">
+                  <i className="fa fa-box me-2"></i> My Orders
+                </Link>
+              </li>
+              <hr />
+              <li>
+                <Link to="/language">
+                  <i className="fa fa-globe me-2"></i> English | USD
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact">
+                  <i className="fa fa-phone me-2"></i> Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/about">
+                  <i className="fa fa-info-circle me-2"></i> About
+                </Link>
+              </li>
+              <hr />
+            </div>
+            <div className="lower">
+              <li>
+                <Link to="/agreement">User Agreement</Link>
+              </li>
+              <li>
+                <Link to="/partnership">Partnership</Link>
+              </li>
+              <li>
+                <Link to="/privacy">Privacy Policy</Link>
+              </li>
+            </div>
+          </ul>
         </div>
-      </nav>
-      {/* FOR MOBILE .//end */}
+      </div>
 
       <header className="section-header mobile-hidden">
         <section className="header-main bg-white border-bottom py-lg-3 py-2 ">
           <div className="container">
             <div className="row gx-2 d-flex align-items-center justify-content-center">
               <div className="col-xl-2 col-lg col-6 col-sm-6 col-md flex-grow-0 d-flex align-items-center justify-content-center">
-                <Link to="/" className="brand-wrap me-3">
+                <Link
+                  to="/"
+                  className="brand-wrap me-3 d-flex align-items-center justify-content-center gap-2 fs-3"
+                >
                   <i
                     style={{
                       width: "40px",
@@ -73,7 +152,9 @@ const Nav = () => {
                       borderRadius: "5px",
                     }}
                     className="fas fa-shopping-bag text-white bg-primary d-flex align-items-center justify-content-center"
-                  ></i>{""}
+                  ></i>
+                  eComerce
+                  {""}
                 </Link>
                 {/* brand-wrap end.// */}
               </div>
@@ -106,7 +187,7 @@ const Nav = () => {
 
               <div className="col-xl-3 col-lg-4 col-md-12 col-12">
                 {/* widgets-wrap  */}
-                <nav className="d-flex justify-content-end ms-4">
+                <nav className="d-flex justify-content-end ms-4 ">
                   {["Profile", "Message", "Saved", "Cart"].map(
                     (item, index) => (
                       <div key={index} className="col mx-2 text-center">
@@ -163,7 +244,7 @@ const Nav = () => {
                     role="button"
                     data-bs-toggle="dropdown"
                   >
-                    All templates
+                    <i class="fa-solid fa-bars me-2"></i> All categoty
                   </a>
                   <nav className="dropdown-menu p-4">
                     <div className="d-flex flex-wrap flex-sm-nowrap">
@@ -171,17 +252,17 @@ const Nav = () => {
                         <h6>Ads website</h6>
                         <ul className="list-menu mb-3">
                           <li>
-                            <a className="text-body" href="/uikit/p-ads-index">
+                            <a className="text-body" href="/">
                               Ads home
                             </a>
                           </li>
                           <li>
-                            <a className="text-body" href="/uikit/p-ads-list">
+                            <a className="text-body" href="/">
                               Ads listing
                             </a>
                           </li>
                           <li>
-                            <a className="text-body" href="/uikit/p-ads-detail">
+                            <a className="text-body" href="/">
                               Ads detail
                             </a>
                           </li>
@@ -190,26 +271,17 @@ const Nav = () => {
                         <h6>Techstore</h6>
                         <ul className="list-menu mb-3">
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-techstore-index"
-                            >
+                            <a className="text-body" href="/">
                               Main page
                             </a>
                           </li>
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-techstore-list"
-                            >
+                            <a className="text-body" href="/t">
                               Listing view
                             </a>
                           </li>
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-techstore-detail"
-                            >
+                            <a className="text-body" href="/l">
                               Item details
                             </a>
                           </li>
@@ -220,50 +292,32 @@ const Nav = () => {
                         <h6>Marketplace</h6>
                         <ul className="list-menu mb-3">
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-market-index"
-                            >
+                            <a className="text-body" href="">
                               Main page
                             </a>
                           </li>
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-market-list"
-                            >
+                            <a className="text-body" href="/">
                               Listing view
                             </a>
                           </li>
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-market-list-grid"
-                            >
+                            <a className="text-body" href="/">
                               Grid view
                             </a>
                           </li>
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-market-detail"
-                            >
+                            <a className="text-body" href="/">
                               Item detail
                             </a>
                           </li>
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-market-cart"
-                            >
+                            <a className="text-body" href="/">
                               Cart page
                             </a>
                           </li>
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-market-order"
-                            >
+                            <a className="text-body" href="/">
                               Order page
                             </a>
                           </li>
@@ -274,20 +328,17 @@ const Nav = () => {
                         <h6>Food order</h6>
                         <ul className="list-menu mb-3">
                           <li>
-                            <a className="text-body" href="/uikit/p-food-index">
+                            <a className="text-body" href="/">
                               Main page
                             </a>
                           </li>
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-food-detail"
-                            >
+                            <a className="text-body" href="/">
                               Restaurant foods
                             </a>
                           </li>
                           <li>
-                            <a className="text-body" href="/uikit/p-food-order">
+                            <a className="text-body" href="/">
                               Food order
                             </a>
                           </li>
@@ -296,101 +347,34 @@ const Nav = () => {
                         <h6>Common pages</h6>
                         <ul className="list-menu mb-3">
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-info-pricing"
-                            >
+                            <a className="text-body" href="/">
                               Pricing page
                             </a>
                           </li>
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-user-profile"
-                            >
+                            <a className="text-body" href="/">
                               User profile
                             </a>
                           </li>
                           <li>
-                            <a
-                              className="text-body"
-                              href="/uikit/p-user-signup"
-                            >
+                            <a className="text-body" href="/">
                               User register
                             </a>
                           </li>
                         </ul>
                       </div>
                     </div>
-
-                    <figure className="p-5 text-center bg-warning-subtle rounded">
-                      <a
-                        href="https://ecommerce-ui.com#templates"
-                        className="btn btn-warning"
-                      >
-                        Preview all templates
-                      </a>
-                    </figure>
                   </nav>
                 </li>
 
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                  >
-                    Pages
-                  </a>
-                  <ul className="dropdown-menu">
-                    <li>
-                      <a className="dropdown-item" href="/uikit/p-market-index">
-                        Main page
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="/uikit/p-market-list">
-                        Listing view
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="dropdown-item"
-                        href="/uikit/p-market-list-grid"
-                      >
-                        Grid view
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="dropdown-item"
-                        href="/uikit/p-market-detail"
-                      >
-                        Detail page
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="/uikit/p-market-cart">
-                        Cart page
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="/uikit/p-market-order">
-                        Order page
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-
                 <li className="nav-item">
                   <a className="nav-link" href="#">
-                    About
+                    Hot offers
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#">
-                    Services
+                    Gift Boxes
                   </a>
                 </li>
                 <li className="nav-item">
@@ -400,43 +384,187 @@ const Nav = () => {
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#">
-                    Fitness sport
+                    Menu items
                   </a>
+                </li>
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                  >
+                    Help
+                    <i
+                      className="fa-solid fa-chevron-down ms-1"
+                      style={{ fontSize: "12px" }}
+                    ></i>
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a className="dropdown-item" href="/">
+                        Main page
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="/">
+                        Listing view
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="/">
+                        Grid view
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="/">
+                        Detail page
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="/">
+                        Cart page
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="/">
+                        Order page
+                      </a>
+                    </li>
+                  </ul>
                 </li>
               </ul>
 
-              <ul className="navbar-nav ms-auto">
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    data-bs-toggle="dropdown"
+              <ul className="navbar-nav ms-auto gap-3">
+                <li className="nav-item">
+                  <select
+                    className="form-select"
+                    style={{
+                      display: "inline-block",
+                      width: "auto",
+                      outline: "none",
+                    }}
                   >
-                    USD
-                  </a>
-                  <div className="dropdown-menu dropdown-menu-end">
-                    <a className="dropdown-item" href="#">
-                      RUBL
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      UZS
-                    </a>
-                  </div>
+                    <option value="USD">🇺🇸 USD</option>
+                    <option value="EUR">🇪🇺 EUR</option>
+                    <option value="GBP">🇬🇧 GBP</option>
+                    <option value="AED">🇦🇪 AED</option>
+                    <option value="RUB">🇷🇺 RUB</option>
+                    <option value="UZS">🇺🇿 UZS</option>
+                    <option value="INR">🇮🇳 INR</option>
+                    <option value="JPY">🇯🇵 JPY</option>
+                    <option value="CNY">🇨🇳 CNY</option>
+                  </select>
                 </li>
+
                 <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"
                     href="#"
                     data-bs-toggle="dropdown"
                   >
-                    English
+                    <img
+                      src="https://flagcdn.com/w40/us.png"
+                      alt="US Flag"
+                      width="20"
+                      className="me-1"
+                    />{" "}
+                    English{" "}
+                    <i
+                      className="fa-solid fa-chevron-down"
+                      style={{ fontSize: "12px" }}
+                    ></i>
                   </a>
                   <div className="dropdown-menu dropdown-menu-end">
                     <a className="dropdown-item" href="#">
+                      <img
+                        src="https://flagcdn.com/w40/ru.png"
+                        alt="Russia Flag"
+                        width="20"
+                        className="me-1"
+                      />{" "}
                       Russian
                     </a>
                     <a className="dropdown-item" href="#">
+                      <img
+                        src="https://flagcdn.com/w40/uz.png"
+                        alt="Uzbekistan Flag"
+                        width="20"
+                        className="me-1"
+                      />{" "}
                       Uzbek
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      <img
+                        src="https://flagcdn.com/w40/fr.png"
+                        alt="France Flag"
+                        width="20"
+                        className="me-1"
+                      />{" "}
+                      French
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      <img
+                        src="https://flagcdn.com/w40/de.png"
+                        alt="Germany Flag"
+                        width="20"
+                        className="me-1"
+                      />{" "}
+                      German
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      <img
+                        src="https://flagcdn.com/w40/es.png"
+                        alt="Spain Flag"
+                        width="20"
+                        className="me-1"
+                      />{" "}
+                      Spanish
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      <img
+                        src="https://flagcdn.com/w40/cn.png"
+                        alt="China Flag"
+                        width="20"
+                        className="me-1"
+                      />{" "}
+                      Chinese
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      <img
+                        src="https://flagcdn.com/w40/jp.png"
+                        alt="Japan Flag"
+                        width="20"
+                        className="me-1"
+                      />{" "}
+                      Japanese
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      <img
+                        src="https://flagcdn.com/w40/in.png"
+                        alt="India Flag"
+                        width="20"
+                        className="me-1"
+                      />{" "}
+                      Hindi
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      <img
+                        src="https://flagcdn.com/w40/sa.png"
+                        alt="Saudi Flag"
+                        width="20"
+                        className="me-1"
+                      />{" "}
+                      Arabic
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      <img
+                        src="https://flagcdn.com/w40/tr.png"
+                        alt="Turkey Flag"
+                        width="20"
+                        className="me-1"
+                      />{" "}
+                      Turkish
                     </a>
                   </div>
                 </li>
@@ -448,6 +576,175 @@ const Nav = () => {
       </header>
       {/* section-header end.// */}
       {/* Intro Section Start */}
+
+      <section className="section-intro mb-3 mt-3">
+        <div className="container1">
+          <main className="card p-2">
+            <div className="row">
+              {/* Sidebar Navigation */}
+              <aside className="col-lg-3">
+                <nav className="nav flex-row nav-pills mb-3 mb-lg-0 aside-nav">
+                  <ul className="nav-list">
+                    <a href="#" className="nav-link">
+                      Mobiles
+                    </a>
+                    <a href="#" className="nav-link">
+                      Electronics
+                    </a>
+                    <a href="#" className="nav-link">
+                      Clothes and wear
+                    </a>
+                    <a href="#" className="nav-link">
+                      Home interiors
+                    </a>
+                    <a href="#" className="nav-link">
+                      Computer and tech
+                    </a>
+                    <a href="#" className="nav-link">
+                      Tools, equipments
+                    </a>
+                    <a href="#" className="nav-link">
+                      Sports and outdoor
+                    </a>
+                    <a href="#" className="nav-link">
+                      Animal and pets
+                    </a>
+                    <a href="#" className="nav-link">
+                      Machinery tools
+                    </a>
+                    <a href="#" className="nav-link">
+                      Other products
+                    </a>
+                  </ul>
+                </nav>
+              </aside>
+
+              {/* Main Content */}
+              <div className="col-lg-9">
+                <div className="row">
+                  <div className="col-xxl-9 col-lg-8">
+                    {/* Carousel */}
+                    <div
+                      id="carouselMain"
+                      className="carousel-main carousel slide"
+                      data-bs-ride="carousel"
+                    >
+                      <div className="carousel-inner">
+                        <article className="carousel-item active">
+                          <div className="carousel-caption">
+                            <h2 className="mb-3 text-start text-dark">
+                              <span className="fw-normal">Latest trending</span>
+                              <br />
+                              <strong>Electronic items</strong>
+                            </h2>
+                          </div>
+                          <img
+                            src="/main-tech.png"
+                            className="d-block w-100 img-cover carousel-image"
+                            alt="Electronics Banner"
+                          />
+                        </article>
+                        <article className="carousel-item">
+                          <div className="carousel-caption">
+                            <h2 className="mb-3 text-start text-dark">
+                              <span className="fw-normal">Latest deals</span>
+                              <br />
+                              <strong>Best Smartphones</strong>
+                            </h2>
+                          </div>
+                          <img
+                            src="/main-phone.png"
+                            className="d-block w-100 img-cover carousel-image"
+                            alt="Smartphones Banner"
+                          />
+                        </article>
+                      </div>
+                      {/* Carousel controls */}
+                      <button
+                        className="carousel-btn carousel-control-prev"
+                        type="button"
+                        data-bs-target="#carouselMain"
+                        data-bs-slide="prev"
+                      >
+                        <span
+                          className="carousel-control-prev-icon"
+                          aria-hidden="true"
+                        ></span>
+                        <span className="visually-hidden">Previous</span>
+                      </button>
+                      <button
+                        className="carousel-btn carousel-control-next"
+                        type="button"
+                        data-bs-target="#carouselMain"
+                        data-bs-slide="next"
+                      >
+                        <span
+                          className="carousel-control-next-icon"
+                          aria-hidden="true"
+                        ></span>
+                        <span className="visually-hidden">Next</span>
+                      </button>
+                    </div>
+                    {/* Carousel End */}
+                  </div>
+
+                  {/* Right Side Content */}
+                  <div className="col-xxl-3 col-lg-4 d-none d-lg-block">
+                    <div className="bg-primary-subtle p-3 rounded mb-2 gap-2">
+                      <p className="d-flex  text-base">
+                        <img
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            borderRadius: "50%",
+                          }}
+                          src="/avatar.jpg"
+                          className="img-avatar me-2"
+                          alt="User Avatar"
+                        />
+                        <span>
+                          Hi, user <br />
+                          let's get started
+                        </span>
+                      </p>
+                      <a href="#" className="btn btn-sm btn-primary w-100 mb-2">
+                        Join now
+                      </a>
+
+                      <a href="#" className="btn btn-sm btn-light w-100">
+                        login
+                      </a>
+                    </div>
+
+                    <div className="bg-warning text-white p-3 rounded mb-2">
+                      Get US $10 off with a new supplier account
+                      <br />
+                      <a
+                        href="#"
+                        className="text-white mt-1 fw-bold d-inline-block"
+                      >
+                        Get now
+                      </a>
+                    </div>
+                    <div className="bg-info text-white p-3 rounded mb-2">
+                      Send quotes with supplier preferences
+                      <br />
+                      <a
+                        href="#"
+                        className="text-white mt-1 fw-bold d-inline-block"
+                      >
+                        Try now
+                      </a>
+                    </div>
+                  </div>
+                  {/* Right Side End */}
+                </div>
+              </div>
+              {/* Main Content End */}
+            </div>
+          </main>
+        </div>
+      </section>
     </>
   );
 };

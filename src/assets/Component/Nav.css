@@ -64,16 +64,79 @@
 }
 .mobile-nav-content .nav-link .icon {
   display: inline-block;
-  font-size: 24px;
+  font-size: 20px;
 }
 .mobile-nav-content .nav-link .text {
   display: block;
   font-size: 12px;
+  text-decoration: none;
 }
 .mobile-nav-content .nav-link.active {
   color: #0d6efd;
 }
 
+a {
+  text-decoration: none;
+}
+
+.nav-link.dropdown-toggle::after {
+  display: none !important;
+}
+
+.offcanvas-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 250px;
+  height: 100%;
+  background: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out;
+  z-index: 9999;
+}
+.offcanvas-menu.open {
+  left: 0;
+}
+.offcanvas-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.upper {
+  padding: 10px 20px;
+  background-color: #eff2f4;
+}
+
+.middle {
+  padding: 0px 20px;
+}
+
+.lower {
+  padding: 0px 40px;
+}
+.offcanvas-content ul li {
+  padding: 5px 0;
+}
+
+.profile-icon i {
+  font-size: 40px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.offcanvas-content ul li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+}
+.close-btn {
+  border: none;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 20px;
+}
 /* Mobile bottom end */
 @media (max-width: 1200px) {
   /* tablet devices */
@@ -120,6 +183,7 @@
     display: block;
   }
 }
+
 @media all and (max-width: 768px) {
   /* mobile devices */
   .navbar-expand .navbar-collapse {
@@ -135,7 +199,98 @@
     overflow-x: auto;
   }
 }
-.form-select option:hover {
-  background-color: #0d6efd !important;
-  color: white !important;
+
+.card {
+  border: none !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container1 {
+  margin: 0 auto;
+  width: 90%;
+}
+
+/* Style for each navigation link */
+aside .nav-link {
+  color: #757575;
+  &:hover {
+    background-color: #c6dcfc;
+    color: #333;
+  }
+}
+
+aside .nav-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  list-style: none;
+}
+
+/* Hide scrollbar for a cleaner look */
+@media (max-width: 991px) {
+  aside .nav-list {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  /* Make the nav items display in a row and scrollable */
+  aside .nav-list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    white-space: nowrap; /* Prevents wrapping */
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Style for each navigation link */
+  aside .nav-link {
+    color: #333;
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 120px; /* Ensures a consistent width */
+    flex-shrink: 0; /* Prevents items from shrinking */
+    text-decoration: none; /* Removes underline */
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Hover effect to change background color */
+  aside .nav-link:hover {
+    background-color: #c6dcfc;
+    color: #fff;
+  }
+
+  aside .nav-list::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.carousel-btn {
+  background-color: rgba(0, 0, 0, 0.096);
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Default style for images */
+.carousel-image {
+  object-fit: cover;
+  height: 400px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+/* Responsive behavior below 991px */
+@media (max-width: 991px) {
+  .carousel-image {
+    height: auto; /* Adjust height automatically */
+  }
 }
