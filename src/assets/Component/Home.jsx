@@ -1,7 +1,16 @@
 import React from "react";
+import IntroSection from "./IntroSection";
+import Hotoffer from "./Hotoffers/Hotoffer";
+import HomeOutdoor from "./Homeoutdoor/HomeOutdoor";
 
 const Home = () => {
-  return <>{/* <h1>Its my Home Componemt</h1> */}</>;
+  return (
+    <>
+      <IntroSection />
+      <Hotoffer />
+      <HomeOutdoor />
+    </>
+  );
 };
 
 export default Home;
