@@ -21,13 +21,13 @@ const Home = () => {
         buttonText="Source now"
         category="furniture"
       />
-      {/* <HomeOutdoor
+      <HomeOutdoor
         apiUrl="https://fakestoreapi.in/api/products"
         backgroundImageUrl="/image98.png"
         sectionTitle="Consumer electronics and gadgets"
         buttonText="Source now"
         category="audio"
-      /> */}
+      />
 
       <BannerForm />
 
