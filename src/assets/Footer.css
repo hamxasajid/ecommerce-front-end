@@ -1,0 +1,16 @@
+.btn-icon i {
+  height: 40px;
+  width: 40px;
+  background-color: #ccc;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-icon i:hover {
+  background-color: #3b5998;
+  color: #fff;
+}

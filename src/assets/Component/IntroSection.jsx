@@ -7,7 +7,7 @@ const IntroSection = () => {
       {/* Intro Section Start */}
 
       <section className="section-intro mb-3 mt-3">
-        <div className="container1">
+        <div className="container">
           <main className="card p-2">
             <div className="row">
               {/* Sidebar Navigation */}

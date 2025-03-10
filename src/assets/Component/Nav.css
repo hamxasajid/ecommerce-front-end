@@ -184,30 +184,9 @@ a {
   }
 }
 
-@media all and (max-width: 768px) {
-  /* mobile devices */
-  .navbar-expand .navbar-collapse {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-
-  .gallery-wrap .thumbs-wrap {
-    margin-bottom: 1rem;
-    white-space: nowrap;
-    overflow-x: auto;
-  }
-}
-
 .card {
   border: none !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.container1 {
-  margin: 0 auto;
-  width: 90%;
 }
 
 /* Style for each navigation link */

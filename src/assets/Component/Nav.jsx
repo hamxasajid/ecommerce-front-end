@@ -53,10 +53,10 @@ const Nav = () => {
             <div className="input-group">
               <input
                 type="search"
-                className="form-control"
+                className="form-control border-2 border-primary"
                 placeholder="Search"
               />
-              <button className="btn btn-light">
+              <button className="btn btn-primary">
                 <i className="fa fa-search"></i>
               </button>
             </div>
@@ -162,14 +162,14 @@ const Nav = () => {
 
               <div className="col-xl-7 col-lg-5 col-12 col-sm-12 col-md">
                 <form action="#" className="search my-3 my-lg-0 ms-xl-4">
-                  <div className="input-group">
+                  <div className="input-group ">
                     <input
                       type="search"
-                      className="form-control"
+                      className="form-control border-2 border-primary"
                       style={{ width: "55%" }}
                       placeholder="Search"
                     />
-                    <select className="form-select">
+                    <select className="form-select border-2 border-primary">
                       <option value="">All type</option>
                       <option value="codex">Special</option>
                       <option value="comments">Only best</option>
@@ -190,7 +190,7 @@ const Nav = () => {
                 <nav className="d-flex justify-content-end ms-4 ">
                   {["Profile", "Message", "Saved", "Cart"].map(
                     (item, index) => (
-                      <div key={index} className="col mx-2 text-center">
+                      <div key={index} className="col text-center">
                         <a href="#" className="text-muted hover:text-dark">
                           <span className="fs-5 d-inline-block">
                             <i

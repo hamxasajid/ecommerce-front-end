@@ -1,33 +1,20 @@
 import React, { useState, useEffect } from "react";
-import "./Hotoffer.css";
 import axios from "axios";
 
 const Hotoffer = () => {
   const [products, setProducts] = useState([]);
-
-  //   const uniqueCategories = [];
-  //   const filteredProducts = products.filter((product) => {
-  //     if (
-  //       !uniqueCategories.includes(product.category) &&
-  //       uniqueCategories.length < 4
-  //     ) {
-  //       uniqueCategories.push(product.category);
-  //       return true;
-  //     }
-  //     return false;
-  //   });
-
-  useEffect(() => {
-    axios.get("https://fakestoreapi.in/api/products").then((response) => {
-      setProducts(response.data.products);
-    });
-  });
   const [timeLeft, setTimeLeft] = useState({
     days: "00",
     hours: "00",
     minutes: "00",
     seconds: "00",
   });
+
+  useEffect(() => {
+    axios.get("https://fakestoreapi.in/api/products").then((response) => {
+      setProducts(response.data.products);
+    });
+  }, []);
 
   useEffect(() => {
     function updateCountdown() {
@@ -51,67 +38,89 @@ const Hotoffer = () => {
     }
 
     const interval = setInterval(updateCountdown, 1000);
-    updateCountdown(); // Call once immediately
+    updateCountdown();
 
-    return () => clearInterval(interval); // Cleanup function to prevent memory leaks
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="container1">
-      <div className="offer-row">
-        <div className="left">
-          <div className="left1">
-            <h2 className="componenet-title">Deals and Offers</h2>
-            <p className="componenet-desc">Hygiene equipments.</p>
-          </div>
-          <div className="left2">
-            <div id="countdown">
-              <div className="couterdiv">
-                <span>
-                  {timeLeft.days}
-                  <br /> Days
-                </span>
+    <section className="py-4">
+      <div className="container">
+        <div className="card overflow-hidden">
+          <div className="row gx-0 border">
+            {/* Left Section */}
+            <aside className="col-lg-3 p-4 d-flex flex-column align-items-start justify-content-start">
+              <header>
+                <h3 className="fw-bold fs-4">Deals and Offers</h3>
+                <p className="text-muted">Hygiene equipments</p>
+              </header>
+
+              <div className="d-flex justify-content-between">
+                <div
+                  className="text-center text-white border bg-dark d-flex flex-column justify-content-center rounded"
+                  style={{ width: "60px", height: "60px" }}
+                >
+                  <span className="fw-bold fs-5">{timeLeft.days}</span>
+                  <small className="d-block">Days</small>
+                </div>
+                <div
+                  className="text-center border text-white border bg-dark d-flex flex-column justify-content-center rounded"
+                  style={{ width: "60px", height: "60px" }}
+                >
+                  <span className="fw-bold fs-5">{timeLeft.hours}</span>
+                  <small className="d-block">Hours</small>
+                </div>
+                <div
+                  className="text-center border text-white border bg-dark d-flex flex-column justify-content-center rounded"
+                  style={{ width: "60px", height: "60px" }}
+                >
+                  <span className="fw-bold fs-5">{timeLeft.minutes}</span>
+                  <small className="d-block">Min</small>
+                </div>
+                <div
+                  className="text-center border text-white border bg-dark d-flex flex-column justify-content-center rounded"
+                  style={{ width: "60px", height: "60px" }}
+                >
+                  <span className="fw-bold fs-5">{timeLeft.seconds}</span>
+                  <small className="d-block">Sec</small>
+                </div>
               </div>
-              <div className="couterdiv">
-                <span>
-                  {timeLeft.hours} <br /> Hours
-                </span>
-              </div>
-              <div className="couterdiv">
-                <span>
-                  {timeLeft.minutes} <br /> Min
-                </span>
-              </div>
-              <div className="couterdiv">
-                <span>
-                  {timeLeft.seconds}
-                  <br /> Sec
-                </span>
+            </aside>
+
+            {/* Right Section */}
+            <div className="col-lg-9 border-start">
+              <div className="row gx-0">
+                {" "}
+                {/* g-0 removes gutter spacing */}
+                {products.slice(0, 5).map((product) => (
+                  <div
+                    className="col-md col-sm-4 col-6 border"
+                    key={product.id}
+                  >
+                    <div className="card-product product-sm p-2 text-center">
+                      <img
+                        src={product.image}
+                        className="img-fluid mb-2"
+                        alt={product.title}
+                      />
+                      <div className="fw-semibold">
+                        {product.title.split(" ").slice(0, 1).join(" ")}
+                        {product.title.split(" ").length > 2 && "..."}
+                      </div>
+                      <span className="badge bg-danger rounded-pill">
+                        -{product.discount}%
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
-        <div className="right">
-          <div className="grid-container">
-            {
-              // filteredProducts
-              products.slice(0, 4).map((product) => (
-                <div className="card" key={product.id}>
-                  <img src={product.image} alt={product.title} />
-                  <h3 className="card-title">
-                    {product.title.split(" ").slice(0, 2).join(" ")}
-                    {product.title.split(" ").length > 3 && " ..."}
-                  </h3>
-                  <span className="badge badge-danger">
-                    -{product.discount}%
-                  </span>
-                </div>
-              ))
-            }
+
+            {/* End Right Section */}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
