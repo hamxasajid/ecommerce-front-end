@@ -37,7 +37,7 @@ const Home = () => {
 
       <SubscribeSection />
 
-      {/* <SuppliersByRegion /> */}
+      <SuppliersByRegion />
 
       <Footer />
     </>
