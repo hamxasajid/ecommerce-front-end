@@ -14,18 +14,9 @@ const Footer = () => {
               <article className="me-lg-5">
                 <Link
                   to="/"
-                  className="brand-wrap me-3 d-flex align-items-center gap-2 fs-3"
+                  className="brand-wrap me-3 d-flex align-items-center justify-content-center gap-2 fs-3"
                 >
-                  <i
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: "5px",
-                    }}
-                    className="fas fa-shopping-bag text-white bg-primary d-flex align-items-center justify-content-center"
-                  ></i>
-                  eComerce
-                  {""}
+                  <img src="logo-colored.svg" alt="logo-colored" />
                 </Link>
                 <p className="mt-3 text-muted">
                   Here is some information about our company. We have been
