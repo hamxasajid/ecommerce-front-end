@@ -226,7 +226,7 @@ const Nav = () => {
                     role="button"
                     data-bs-toggle="dropdown"
                   >
-                    <i class="fa-solid fa-bars me-2"></i> All categoty
+                    <i className="fa-solid fa-bars me-2"></i> All categoty
                   </a>
                   <nav className="dropdown-menu p-4">
                     <div className="d-flex flex-wrap flex-sm-nowrap">
@@ -360,9 +360,9 @@ const Nav = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Projects
-                  </a>
+                  <Link className="nav-link" to="/allproducts">
+                    All Products
+                  </Link>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#">

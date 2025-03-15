@@ -7,7 +7,6 @@ import Recomanded from "./Recomanded";
 import ExtraServices from "./ExtraServices";
 import SubscribeSection from "./SubscribeSection";
 import SuppliersByRegion from "./SuppliersByRegion";
-import Footer from "../Footer";
 
 const Home = () => {
   return (
@@ -38,8 +37,6 @@ const Home = () => {
       <SubscribeSection />
 
       <SuppliersByRegion />
-
-      <Footer />
     </>
   );
 };
