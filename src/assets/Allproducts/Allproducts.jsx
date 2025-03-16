@@ -13,14 +13,16 @@ const Allproducts = () => {
         const [api1, api2, api3] = await Promise.all([
           axios.get("https://fakestoreapi.com/products"),
           axios.get("https://dummyjson.com/products"),
-          axios.get("https://fakestoreapi.in/api/products"),
+          axios.get(
+            "https://api.escuelajs.co/api/v1/products?offset=0&limit=29"
+          ),
         ]);
 
         // Combine products from both APIs
         const mergedProducts = [
           ...api1.data,
           ...api2.data.products,
-          ...api3.data.products,
+          ...api3.data,
         ];
 
         setProducts(mergedProducts);
@@ -62,7 +64,14 @@ const Allproducts = () => {
           <div className="col" key={product.id}>
             <div className="card border border-primary py-3">
               <img
-                src={product.image || product.thumbnail || "./placeholder.jpeg"}
+                src={
+                  product.image ||
+                  product.thumbnail ||
+                  product.images[0] ||
+                  product.images[1] ||
+                  product.images[2] ||
+                  product.category.image
+                }
                 className="card-img-top"
                 alt={product.title}
                 style={{
@@ -77,25 +86,6 @@ const Allproducts = () => {
                   {product.title.split(" ").slice(0, 3).join(" ")}
                 </h5>
                 <b className="text-muted">${product.price}</b>
-
-                {/* Star Rating */}
-                <div className="d-flex align-items-center">
-                  {[...Array(5)].map((_, i) => (
-                    <span
-                      key={i}
-                      className={`bi ${
-                        i <
-                        Math.floor(
-                          Number(product.rating?.rate) ||
-                            Number(product.rating) ||
-                            0
-                        )
-                          ? "bi-star-fill text-warning"
-                          : "bi-star text-secondary"
-                      }`}
-                    ></span>
-                  ))}
-                </div>
 
                 {/* Buttons */}
                 <div className="d-flex justify-content-between mt-4 gap-2">
