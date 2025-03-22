@@ -10,20 +10,13 @@ const Allproducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const [api1, api2, api3] = await Promise.all([
+        const [api1, api2] = await Promise.all([
           axios.get("https://fakestoreapi.com/products"),
           axios.get("https://dummyjson.com/products"),
-          axios.get(
-            "https://api.escuelajs.co/api/v1/products?offset=0&limit=29"
-          ),
         ]);
 
         // Combine products from both APIs
-        const mergedProducts = [
-          ...api1.data,
-          ...api2.data.products,
-          ...api3.data,
-        ];
+        const mergedProducts = [...api1.data, ...api2.data.products];
 
         setProducts(mergedProducts);
       } catch (error) {
@@ -42,6 +35,12 @@ const Allproducts = () => {
     indexOfLastProduct
   );
   const totalPages = Math.ceil(products.length / productsPerPage);
+
+  const getProductSource = (product) => {
+    if (product.category?.image) return "escuelajs";
+    if (product.thumbnail) return "dummyjson";
+    return "fakestore";
+  };
 
   return (
     <div className="container py-5">
@@ -82,15 +81,50 @@ const Allproducts = () => {
                 }}
               />
               <div className="card-body">
+                <b className="text-muted">${product.price}</b>
+
                 <h5 className="card-title fs-6">
                   {product.title.split(" ").slice(0, 3).join(" ")}
                 </h5>
-                <b className="text-muted">${product.price}</b>
+                <p
+                  className="text-muted"
+                  style={{ fontSize: "12px", height: "40px" }}
+                >
+                  {product.description.split(" ").slice(0, 8).join(" ") +
+                    " ..."}
+                </p>
+
+                <div className="d-flex justify-content-between align-items-center">
+                  {/* Star Rating */}
+                  <small className="text-warning">
+                    {Array.from({ length: 5 }, (_, index) => (
+                      <i
+                        key={index}
+                        className={`bi bi-star${
+                          index <
+                          Math.round(product.rating.rate || product.rating)
+                            ? "-fill"
+                            : ""
+                        }`}
+                      ></i>
+                    ))}
+                  </small>
+
+                  {/* Reviews Count */}
+                  <small className="text-muted">
+                    <i className="bi bi-chat-left-text"></i>{" "}
+                    {(product.reviews ? product.reviews.length : 0) ||
+                      product.rating.count}
+                  </small>
+                </div>
 
                 {/* Buttons */}
+
                 <div className="d-flex justify-content-between mt-4 gap-2">
                   <Link
-                    to={`/detail/${product.id}`}
+                    to={`/detail/${product.id}?source=${encodeURIComponent(
+                      getProductSource(product)
+                    )}`}
                     className="btn btn-primary fs-6"
                   >
                     View Details
