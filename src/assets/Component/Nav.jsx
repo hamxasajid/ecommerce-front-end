@@ -23,7 +23,7 @@ const Nav = () => {
               to="/"
               className="brand-wrap me-3 d-flex align-items-center justify-content-center gap-2 fs-3"
             >
-              <img src="logo-colored.svg" alt="logo-colored" />
+              <img src="/logo-colored.svg" alt="logo-colored" />
             </Link>
           </div>
 
@@ -136,7 +136,7 @@ const Nav = () => {
                   to="/"
                   className="brand-wrap me-3 d-flex align-items-center justify-content-center gap-2 fs-3"
                 >
-                  <img src="logo-colored.svg" alt="logo-colored" />
+                  <img src="/logo-colored.svg" alt="logo-colored" />
                 </Link>
                 {/* brand-wrap end.// */}
               </div>

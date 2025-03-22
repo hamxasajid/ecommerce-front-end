@@ -89,7 +89,10 @@ const Allproducts = () => {
 
                 {/* Buttons */}
                 <div className="d-flex justify-content-between mt-4 gap-2">
-                  <Link to="#" className="btn btn-primary fs-6">
+                  <Link
+                    to={`/detail/${product.id}`}
+                    className="btn btn-primary fs-6"
+                  >
                     View Details
                   </Link>
                   <Link
