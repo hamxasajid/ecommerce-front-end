@@ -56,14 +56,18 @@ const Nav = () => {
       </header>
 
       {/* OFF-CANVAS MENU */}
-      <div className={`offcanvas-menu ${offCanvasOpen ? "open" : ""}`}>
+      <div className={`offcanvas-menu w-100 ${offCanvasOpen ? "open" : ""}`}>
         <div className="offcanvas-content">
-          <button className="close-btn" onClick={() => setOffCanvasOpen(false)}>
+          <button
+            className="close-btn fs-1 position-absolute top-0 end-0 m-3 btn btn-light"
+            onClick={() => setOffCanvasOpen(false)}
+          >
             &times;
           </button>
+
           <ul className="text-dark">
             {/* Upper Section */}
-            <div className="upper">
+            <div className="upper py-4">
               <Link to="/profile" className="profile-icon me-2">
                 <i className="fa fa-user-circle" aria-hidden="true"></i>
               </Link>
@@ -75,52 +79,65 @@ const Nav = () => {
             {/* Middle Section */}
             <div className="middle">
               <li>
-                <Link to="/">
+                <Link to="/" onClick={() => setOffCanvasOpen(false)}>
                   <i className="fa fa-home me-2"></i> Home
                 </Link>
               </li>
               <li>
-                <Link to="/categories">
+                <Link to="/categories" onClick={() => setOffCanvasOpen(false)}>
                   <i className="fa fa-th-large me-2"></i> Categories
                 </Link>
               </li>
+
               <li>
-                <Link to="/favorites">
+                <Link to="/allproducts" onClick={() => setOffCanvasOpen(false)}>
+                  <i className="fa fa-list me-2"></i> All Products
+                </Link>
+              </li>
+              <li>
+                <Link to="/favorites" onClick={() => setOffCanvasOpen(false)}>
                   <i className="fa fa-heart me-2"></i> Favorites
                 </Link>
               </li>
               <li>
-                <Link to="/orders">
+                <Link to="/orders" onClick={() => setOffCanvasOpen(false)}>
                   <i className="fa fa-box me-2"></i> My Orders
                 </Link>
               </li>
               <hr />
               <li>
-                <Link to="/language">
+                <Link to="/language" onClick={() => setOffCanvasOpen(false)}>
                   <i className="fa fa-globe me-2"></i> English | USD
                 </Link>
               </li>
               <li>
-                <Link to="/contact">
+                <Link to="/contact" onClick={() => setOffCanvasOpen(false)}>
                   <i className="fa fa-phone me-2"></i> Contact Us
                 </Link>
               </li>
               <li>
-                <Link to="/about">
+                <Link to="/about" onClick={() => setOffCanvasOpen(false)}>
                   <i className="fa fa-info-circle me-2"></i> About
                 </Link>
               </li>
               <hr />
             </div>
-            <div className="lower">
+            <div className="lower" onClick={() => setOffCanvasOpen(false)}>
               <li>
-                <Link to="/agreement">User Agreement</Link>
+                <Link to="/agreement">
+                  {" "}
+                  onClick={() => setOffCanvasOpen(false)}User Agreement
+                </Link>
               </li>
               <li>
-                <Link to="/partnership">Partnership</Link>
+                <Link to="/partnership" onClick={() => setOffCanvasOpen(false)}>
+                  Partnership
+                </Link>
               </li>
               <li>
-                <Link to="/privacy">Privacy Policy</Link>
+                <Link to="/privacy" onClick={() => setOffCanvasOpen(false)}>
+                  Privacy Policy
+                </Link>
               </li>
             </div>
           </ul>
