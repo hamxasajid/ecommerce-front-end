@@ -18,7 +18,7 @@ const Hotoffer = () => {
 
   useEffect(() => {
     function updateCountdown() {
-      let targetDate = new Date("March 15, 2025 12:00:00").getTime();
+      let targetDate = new Date("December 25, 2025 12:00:00").getTime();
       let now = new Date().getTime();
       let timeLeft = targetDate - now;
 

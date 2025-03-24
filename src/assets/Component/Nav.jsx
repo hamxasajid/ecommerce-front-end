@@ -191,7 +191,7 @@ const Nav = () => {
                     (item, index) => (
                       <div key={index} className="col text-center">
                         <a href="#" className="text-muted hover:text-dark">
-                          <span className="fs-5 d-inline-block">
+                          <span className="fs-6 d-inline-block">
                             <i
                               className={`fa ${
                                 item === "Profile"
@@ -204,7 +204,10 @@ const Nav = () => {
                               }`}
                             />
                           </span>
-                          <small className="d-block text-dark text-truncate">
+                          <small
+                            className="d-block text-dark"
+                            style={{ fontSize: "10px" }}
+                          >
                             {item}
                           </small>
                         </a>

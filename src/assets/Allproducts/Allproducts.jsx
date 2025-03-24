@@ -261,13 +261,14 @@ const Allproducts = () => {
               Total Products: {filteredProducts.length}
             </span>
 
-            {/* Sorting & View Toggle */}
+            {/* Sorting and toogle*/}
             <div className="d-flex flex-column flex-sm-row gap-2 w-100 justify-content-sm-end">
               <select
                 className="form-select w-100 w-sm-auto"
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value)}
               >
+                {/* dropdown for sortig */}
                 <option value="">Sort By</option>
                 <option value="price-low-high">Price: Low to High</option>
                 <option value="price-high-low">Price: High to Low</option>
